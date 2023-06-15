@@ -1,5 +1,5 @@
 import jsonServerProvider from 'ra-data-json-server';
 
 export const dataProvider = jsonServerProvider(
-    import.meta.env.VITE_JSON_SERVER_URL
+    'http://3.38.118.228:8080/api/home'
 );
