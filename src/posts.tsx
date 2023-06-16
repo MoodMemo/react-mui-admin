@@ -1,4 +1,5 @@
 // in src/posts.tsx
+import { useRecordContext} from "react-admin";
 import {
   List,
   Datagrid,
@@ -12,6 +13,11 @@ import {
   TextInput,
 } from "react-admin";
 
+const PostTitle = () => {
+  const record = useRecordContext();
+  return <span>Post {record ? `"${record.title}"` : ''}</span>;
+};
+
 export const PostList = () => (
   <List>
     <Datagrid>
@@ -24,7 +30,7 @@ export const PostList = () => (
 );
 
 export const PostEdit = () => (
-  <Edit>
+  <Edit title={<PostTitle />}>
     <SimpleForm>
       <TextInput source="id" disabled />
       <ReferenceInput source="userId" reference="users" />
