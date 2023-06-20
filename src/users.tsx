@@ -1,26 +1,30 @@
 // in src/users.tsx
 import { useMediaQuery } from "@mui/material";
-import { List, SimpleList, Datagrid, TextField, EmailField } from "react-admin";
-import MyUrlField from "./MyUrlField";
+import { List, SimpleList, Datagrid, TextField } from "react-admin";
+import { useEffect, useState } from "react";
 
 export const UserList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const [userList, setUserList] = useState([]);
+
+  useEffect(() => {
+    fetch("http://3.38.118.228:8080/api/home")
+      .then((response) => response.json())
+      .then((data) => setUserList(data));
+  }, []);
+
   return (
     <List>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.name}
-          secondaryText={(record) => record.username}
-          tertiaryText={(record) => record.email}
+          primaryText={(record) => record.username}
+          secondaryText={(record) => record.kakaoId}
+          data={userList}
         />
       ) : (
-        <Datagrid rowClick="edit">
-          <TextField source="id" />
-          <TextField source="name" />
-          <EmailField source="email" />
-          <TextField source="phone" />
-          <MyUrlField source="website" />
-          <TextField source="company.name" />
+        <Datagrid rowClick="edit" data={userList}>
+          <TextField source="kakaoId" />
+          <TextField source="username" />
         </Datagrid>
       )}
     </List>
