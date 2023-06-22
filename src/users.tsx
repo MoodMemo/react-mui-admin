@@ -68,7 +68,7 @@ export const UserList = () => {
           margin: '50px 150px'
         }}>
         <h3>kakaoId : {selectedUser.kakaoId}</h3>
-        {/* <h2>username : {selectedUser.username}</h2> */}
+        <h2>username : {selectedUser.username}</h2>
         <br></br>
         <div style={{
           display: 'flex',
@@ -165,7 +165,7 @@ export const UserList = () => {
             order: 0,
             flexGrow: 0
           }}>
-          {/* <p>{selectedUser.keyword && selectedUser.keyword.join(", ")}</p> */}
+          <p>{selectedUser.keyword && selectedUser.keyword.join(", ")}</p>
           </div>
 
           {/* <p>{selectedUser.time}</p> */}
