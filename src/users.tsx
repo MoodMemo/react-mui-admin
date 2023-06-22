@@ -64,13 +64,113 @@ export const UserList = () => {
       )}
 
       {selectedUser && (
-        <div>
-          <h2>{selectedUser.username}</h2>
-          <p>{selectedUser.date}</p>
-          <p>{selectedUser.title}</p>
-          <p>{selectedUser.bodyText}</p>
-          <p>{selectedUser.keyword && selectedUser.keyword.join(", ")}</p>
-          <p>{selectedUser.time}</p>
+        <div style={{
+          margin: '50px 150px'
+        }}>
+        <h3>kakaoId : {selectedUser.kakaoId}</h3>
+        {/* <h2>username : {selectedUser.username}</h2> */}
+        <br></br>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          padding: '0px 100px 68px',
+          gap: '10px',
+          position: 'relative',
+          width: '684px',
+          height: 'auto',
+          background: '#FFFFFF',
+          boxShadow: '0px 18px 28px rgba(7, 45, 87, 0.15), 0px 0px 1px rgba(7, 45, 87, 0.31)',
+          borderRadius: '30px'
+        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: '0px 20px',
+            gap: '10px',
+            width: '158px',
+            height: '44px',
+            background: '#072D57',
+            borderRadius: '0px 0px 12px 12px',
+            flex: 'none',
+            order: 0,
+            flexGrow: 0
+          }}><p style={{
+            width: '158px',
+            height: '20px',
+            fontFamily: 'Ubuntu',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '20px',
+            letterSpacing: '1.5px',
+            color: '#FFFFFF',
+            flex: 'none',
+            order: 0,
+            flexGrow: 0
+          }}>{selectedUser.date}</p>
+          </div>
+
+          <p style={{
+            width: '575px',
+            height: '54px',
+            fontFamily: 'Ubuntu',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '30px',
+            lineHeight: '54px',
+            color: '#072D57',
+            flex: 'none',
+            order: 0,
+            flexGrow: 0
+          }}>{selectedUser.title}</p>
+          
+          <hr style={{
+            width: '484px',
+            height: '0px',
+            border: '1px solid #DDE2E8',
+            flex: 'none',
+            order: 0,
+            flexGrow: 0
+          }}></hr>
+
+          <p style={{
+            width: '484px',
+            height: 'auto',
+            fontFamily: 'Ubuntu',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            fontSize: '20px',
+            lineHeight: '30px',
+            color: '#5E5E5E',
+            flex: 'none',
+            order: 0,
+            flexGrow: 0
+          }}>{selectedUser.bodyText}</p>
+
+          <div style={{
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '0px 0px',
+            gap: '24px',
+            width: '365px',
+            height: '72px',
+            border: '2px dashed #072D57',
+            borderRadius: '5px',
+            flex: 'none',
+            order: 0,
+            flexGrow: 0
+          }}>
+          {/* <p>{selectedUser.keyword && selectedUser.keyword.join(", ")}</p> */}
+          </div>
+
+          {/* <p>{selectedUser.time}</p> */}
+        </div>
+
         </div>
       )}
 
