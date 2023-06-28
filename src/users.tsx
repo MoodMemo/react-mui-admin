@@ -128,15 +128,17 @@ export const UserList = () => {
           </div>
 
           <p style={{
-            width: '575px',
-            height: '54px',
+            width: 'auto',
+            height: 'auto',
             fontFamily: 'Ubuntu',
             fontStyle: 'normal',
             fontWeight: 700,
             fontSize: '30px',
+            margin: '30px 0px 10px 0px',
             lineHeight: '54px',
             color: '#072D57',
             flex: 'none',
+            wordBreak: 'keep-all',
             order: 0,
             flexGrow: 0
           }}>{selectedUser.title}</p>
