@@ -7,6 +7,7 @@ export const UserList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const [userList, setUserList] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     fetch("http://3.38.118.228:8080/api/home")
@@ -16,6 +17,16 @@ export const UserList = () => {
         // console.log(data[0].kakaoId);
       });
   }, []);
+
+  useEffect(() => {
+    if (refresh && selectedUser) {
+      const value = selectedUser.kakaoId;
+      fetch(`http://3.38.118.228:8080/api/dailyReport/${value}`)
+        .then((response) => response.json())
+        .then((data) => setSelectedUser(data));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refresh])
 
   // const handleClick = () => {
   //   const record = useRecordContext();
@@ -27,6 +38,7 @@ export const UserList = () => {
 
   const CustomRow = () => {
     const record = useRecordContext();
+
     const handleClick = () => {
       const value = record.kakaoId;
       fetch(`http://3.38.118.228:8080/api/dailyReport/${value}`)
@@ -36,10 +48,13 @@ export const UserList = () => {
 
     return (
       <div onClick={handleClick}>
-        {/* <TextField source="kakaoId" record={record} /> */}
         <TextField source="username" record={record} />
       </div>
     );
+  };
+
+  const handleRefresh = () => {
+    setRefresh(true);
   };
 
   return (
@@ -170,7 +185,9 @@ export const UserList = () => {
 
           {/* <p>{selectedUser.time}</p> */}
         </div>
-
+          <button onClick={handleRefresh} style={{
+            margin: '20px'
+          }}>Refresh</button>
         </div>
       )}
 
