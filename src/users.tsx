@@ -36,7 +36,7 @@ export const UserList = () => {
 
     return (
       <div onClick={handleClick}>
-        <TextField source="kakaoId" record={record} />
+        {/* <TextField source="kakaoId" record={record} /> */}
         <TextField source="username" record={record} />
       </div>
     );
