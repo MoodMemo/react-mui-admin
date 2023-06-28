@@ -10,10 +10,10 @@ export const UserList = () => {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    fetch("http://3.38.118.228:8080/api/home")
+    fetch("http://3.38.118.228:8080/api/userStampCount")
       .then((response) => response.json())
       .then((data) => {
-        setUserList(data)
+        setUserList(data.data)
         // console.log(data[0].kakaoId);
       });
   }, []);
@@ -41,7 +41,9 @@ export const UserList = () => {
 
     return (
       <div onClick={handleClick}>
-        <TextField source="username" record={record} />
+        <span><TextField source="username" record={record} /></span>
+        <span> </span>
+        <span><TextField source="stampCount" record={record} /></span>
       </div>
     );
   };
