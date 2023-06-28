@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export const UserList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const [userList, setUserList] = useState([]);
+  const [info, setInfo] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
@@ -13,7 +14,8 @@ export const UserList = () => {
     fetch("http://3.38.118.228:8080/api/userStampCount")
       .then((response) => response.json())
       .then((data) => {
-        setUserList(data.data)
+        setUserList(data.data);
+        setInfo(data.info);
         // console.log(data[0].kakaoId);
       });
   }, []);
@@ -54,6 +56,10 @@ export const UserList = () => {
 
   return (
     <div>
+      <h2 style={{
+        margin: '30px 0px 0px 20px'
+      }}>{info}</h2>
+
       {!selectedUser && (
         <List>
           {isSmall ? (
