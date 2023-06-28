@@ -28,13 +28,6 @@ export const UserList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
-  // const handleClick = () => {
-  //   const record = useRecordContext();
-  //   const value = record.kakaoId;
-  //   fetch(`http://3.38.118.228:8080/api/dailyReport/${value}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setSelectedUser(data));
-  // };
 
   const CustomRow = () => {
     const record = useRecordContext();
