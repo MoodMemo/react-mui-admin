@@ -170,9 +170,9 @@ export const UserList = () => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '0px 0px',
+            padding: '0px 30px',
             gap: '24px',
-            width: '365px',
+            width: 'auto',
             height: '72px',
             border: '2px dashed #072D57',
             borderRadius: '5px',
@@ -180,7 +180,87 @@ export const UserList = () => {
             order: 0,
             flexGrow: 0
           }}>
-          <p>{selectedUser.keyword && selectedUser.keyword.join(", ")}</p>
+          <p style={{
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: '8px 15px',
+            gap: '4px',
+
+            width: 'auto',
+            height: '32px',
+
+            backgroundColor: '#DDE2E8',
+            border: '1px solid #BABABA',
+            borderRadius: '2px',
+
+            flex: 'none',
+            order: 0,
+            flexGrow: 0,
+
+            fontFamily: 'Ubuntu',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '16px',
+
+            color: '#072D57'
+          }}>{selectedUser.keyword1st}</p>
+          <p style={{
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: '8px 15px',
+            gap: '4px',
+
+            width: 'auto',
+            height: '32px',
+
+            backgroundColor: '#DDE2E8',
+            border: '1px solid #BABABA',
+            borderRadius: '2px',
+
+            flex: 'none',
+            order: 0,
+            flexGrow: 0,
+
+            fontFamily: 'Ubuntu',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '16px',
+
+            color: '#072D57'
+          }}>{selectedUser.keyword2nd}</p>
+          <p style={{
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: '8px 15px',
+            gap: '4px',
+
+            width: 'auto',
+            height: '32px',
+
+            backgroundColor: '#DDE2E8',
+            border: '1px solid #BABABA',
+            borderRadius: '2px',
+
+            flex: 'none',
+            order: 0,
+            flexGrow: 0,
+
+            fontFamily: 'Ubuntu',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '20px',
+            lineHeight: '16px',
+
+            color: '#072D57'
+          }}>{selectedUser.keyword3rd}</p>
           </div>
 
           {/* <p>{selectedUser.time}</p> */}
