@@ -54,6 +54,41 @@ export const UserList = () => {
     setRefresh(true);
   };
 
+  const handleSave = () => {
+    // 데이터를 POST 요청의 본문에 포함시킬 객체 생성
+    const data = {
+      // 필요한 데이터 속성들을 추가
+      kakaoId: selectedUser.kakaoId,
+      username: selectedUser.username,
+      date: selectedUser.date,
+      title: selectedUser.title,
+      bodyText: selectedUser.bodyText,
+      keyword1st: selectedUser.keyword1st,
+      keyword2nd: selectedUser.keyword2nd,
+      keyword3rd: selectedUser.keyword3rd,
+      time: selectedUser.time
+      // ... 추가 데이터 속성들
+    };
+  
+    fetch("http://3.38.118.228:8080/api/dailyReport", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data), // 데이터를 JSON 문자열로 변환하여 본문에 포함
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        // POST 요청에 대한 응답 처리
+        console.log(responseData);
+        // 추가적인 로직 수행
+      })
+      .catch((error) => {
+        // 에러 처리
+        console.error("Error:", error);
+      });
+  };
+
   return (
     <div>
       <h2 style={{
@@ -271,6 +306,9 @@ export const UserList = () => {
           <button onClick={handleRefresh} style={{
             margin: '20px'
           }}>Refresh</button>
+          <button onClick={handleSave} style={{
+            margin: '20px'
+          }}>Save</button>
         </div>
       )}
 
