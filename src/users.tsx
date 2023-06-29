@@ -2,6 +2,7 @@
 import { useMediaQuery } from "@mui/material";
 import { List, SimpleList, Datagrid, TextField, useRecordContext } from "react-admin";
 import { useEffect, useState } from "react";
+import './users.css';
 
 export const UserList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -9,6 +10,7 @@ export const UserList = () => {
   const [info, setInfo] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [refresh, setRefresh] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     fetch("http://3.38.118.228:8080/api/userStampCount")
@@ -22,8 +24,7 @@ export const UserList = () => {
 
   useEffect(() => {
     if (refresh && selectedUser) {
-      const value = selectedUser.kakaoId;
-      fetch(`http://3.38.118.228:8080/api/dailyReport/${value}`)
+      fetch(`http://3.38.118.228:8080/api/dailyReport/${userId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
     }
@@ -33,10 +34,10 @@ export const UserList = () => {
 
   const CustomRow = () => {
     const record = useRecordContext();
+    setUserId(record.kakaoId); // handleClick 안에 있으면 handleClick 이벤트가 끝나고 나서 실행되기 때문에 뺐다.
 
     const handleClick = () => {
-      const value = record.kakaoId;
-      fetch(`http://3.38.118.228:8080/api/dailyReport/${value}`)
+      fetch(`http://3.38.118.228:8080/api/dailyReport/final/${userId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
     };
@@ -115,203 +116,142 @@ export const UserList = () => {
       )}
 
       {selectedUser && (
-        <div style={{
-          margin: '50px 150px'
-        }}>
-        <h3>kakaoId : {selectedUser.kakaoId}</h3>
-        <h2>username : {selectedUser.username}</h2>
-        <br></br>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          padding: '0px 100px 68px',
-          gap: '10px',
-          position: 'relative',
-          width: '684px',
-          height: 'auto',
-          background: '#FFFFFF',
-          boxShadow: '0px 18px 28px rgba(7, 45, 87, 0.15), 0px 0px 1px rgba(7, 45, 87, 0.31)',
-          borderRadius: '30px'
-        }}>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: '0px 20px',
-            gap: '10px',
-            width: '158px',
-            height: '44px',
-            background: '#072D57',
-            borderRadius: '0px 0px 12px 12px',
-            flex: 'none',
-            order: 0,
-            flexGrow: 0
-          }}><p style={{
-            width: '158px',
-            height: '20px',
-            fontFamily: 'Ubuntu',
-            fontStyle: 'normal',
-            fontWeight: 700,
-            fontSize: '20px',
-            lineHeight: '20px',
-            letterSpacing: '1.5px',
-            color: '#FFFFFF',
-            flex: 'none',
-            order: 0,
-            flexGrow: 0
-          }}>{selectedUser.date}</p>
+        <div className="selectedUser">
+          <h3>kakaoId : {selectedUser.kakaoId}</h3>
+          <h2>username : {selectedUser.username}</h2>
+          <br></br>
+          <div className="dbDiary">
+            <div className="dateBg">
+              <p className="date">{selectedUser.date}</p>
+            </div>
+
+            <p className="title">{selectedUser.title}</p>
+            
+            <hr className="line"></hr>
+
+            <p style={{
+              width: '484px',
+              height: 'auto',
+              fontFamily: 'Ubuntu',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              fontSize: '20px',
+              lineHeight: '30px',
+              color: '#5E5E5E',
+              flex: 'none',
+              order: 0,
+              flexGrow: 0
+            }}>{selectedUser.bodyText}</p>
+
+            <div style={{
+              boxSizing: 'border-box',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '0px 30px',
+              gap: '24px',
+              width: 'auto',
+              height: '72px',
+              border: '2px dashed #072D57',
+              borderRadius: '5px',
+              flex: 'none',
+              order: 0,
+              flexGrow: 0
+            }}>
+              <p style={{
+                boxSizing: 'border-box',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                padding: '8px 15px',
+                gap: '4px',
+
+                width: 'auto',
+                height: '32px',
+
+                backgroundColor: '#DDE2E8',
+                border: '1px solid #BABABA',
+                borderRadius: '2px',
+
+                flex: 'none',
+                order: 0,
+                flexGrow: 0,
+
+                fontFamily: 'Ubuntu',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                fontSize: '20px',
+                lineHeight: '16px',
+
+                color: '#072D57'
+              }}>{selectedUser.keyword1st}</p>
+              <p style={{
+                boxSizing: 'border-box',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                padding: '8px 15px',
+                gap: '4px',
+
+                width: 'auto',
+                height: '32px',
+
+                backgroundColor: '#DDE2E8',
+                border: '1px solid #BABABA',
+                borderRadius: '2px',
+
+                flex: 'none',
+                order: 0,
+                flexGrow: 0,
+
+                fontFamily: 'Ubuntu',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                fontSize: '20px',
+                lineHeight: '16px',
+
+                color: '#072D57'
+              }}>{selectedUser.keyword2nd}</p>
+              <p style={{
+                boxSizing: 'border-box',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                padding: '8px 15px',
+                gap: '4px',
+
+                width: 'auto',
+                height: '32px',
+
+                backgroundColor: '#DDE2E8',
+                border: '1px solid #BABABA',
+                borderRadius: '2px',
+
+                flex: 'none',
+                order: 0,
+                flexGrow: 0,
+
+                fontFamily: 'Ubuntu',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                fontSize: '20px',
+                lineHeight: '16px',
+
+                color: '#072D57'
+              }}>{selectedUser.keyword3rd}</p>
+            </div>
+
+            {/* <p>{selectedUser.time}</p> */}
           </div>
-
-          <p style={{
-            width: 'auto',
-            height: 'auto',
-            fontFamily: 'Ubuntu',
-            fontStyle: 'normal',
-            fontWeight: 700,
-            fontSize: '30px',
-            margin: '30px 0px 10px 0px',
-            lineHeight: '54px',
-            color: '#072D57',
-            flex: 'none',
-            wordBreak: 'keep-all',
-            order: 0,
-            flexGrow: 0
-          }}>{selectedUser.title}</p>
-          
-          <hr style={{
-            width: '484px',
-            height: '0px',
-            border: '1px solid #DDE2E8',
-            flex: 'none',
-            order: 0,
-            flexGrow: 0
-          }}></hr>
-
-          <p style={{
-            width: '484px',
-            height: 'auto',
-            fontFamily: 'Ubuntu',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            fontSize: '20px',
-            lineHeight: '30px',
-            color: '#5E5E5E',
-            flex: 'none',
-            order: 0,
-            flexGrow: 0
-          }}>{selectedUser.bodyText}</p>
-
-          <div style={{
-            boxSizing: 'border-box',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '0px 30px',
-            gap: '24px',
-            width: 'auto',
-            height: '72px',
-            border: '2px dashed #072D57',
-            borderRadius: '5px',
-            flex: 'none',
-            order: 0,
-            flexGrow: 0
-          }}>
-          <p style={{
-            boxSizing: 'border-box',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: '8px 15px',
-            gap: '4px',
-
-            width: 'auto',
-            height: '32px',
-
-            backgroundColor: '#DDE2E8',
-            border: '1px solid #BABABA',
-            borderRadius: '2px',
-
-            flex: 'none',
-            order: 0,
-            flexGrow: 0,
-
-            fontFamily: 'Ubuntu',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '20px',
-            lineHeight: '16px',
-
-            color: '#072D57'
-          }}>{selectedUser.keyword1st}</p>
-          <p style={{
-            boxSizing: 'border-box',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: '8px 15px',
-            gap: '4px',
-
-            width: 'auto',
-            height: '32px',
-
-            backgroundColor: '#DDE2E8',
-            border: '1px solid #BABABA',
-            borderRadius: '2px',
-
-            flex: 'none',
-            order: 0,
-            flexGrow: 0,
-
-            fontFamily: 'Ubuntu',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '20px',
-            lineHeight: '16px',
-
-            color: '#072D57'
-          }}>{selectedUser.keyword2nd}</p>
-          <p style={{
-            boxSizing: 'border-box',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: '8px 15px',
-            gap: '4px',
-
-            width: 'auto',
-            height: '32px',
-
-            backgroundColor: '#DDE2E8',
-            border: '1px solid #BABABA',
-            borderRadius: '2px',
-
-            flex: 'none',
-            order: 0,
-            flexGrow: 0,
-
-            fontFamily: 'Ubuntu',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '20px',
-            lineHeight: '16px',
-
-            color: '#072D57'
-          }}>{selectedUser.keyword3rd}</p>
-          </div>
-
-          {/* <p>{selectedUser.time}</p> */}
-        </div>
-          <button onClick={handleRefresh} style={{
-            margin: '20px'
-          }}>Refresh</button>
-          <button onClick={handleSave} style={{
-            margin: '20px'
-          }}>Save</button>
+            <button onClick={handleRefresh} style={{
+              margin: '20px'
+            }}>Refresh</button>
+            <button onClick={handleSave} style={{
+              margin: '20px'
+            }}>Save</button>
         </div>
       )}
-
     </div>
   );
 };
