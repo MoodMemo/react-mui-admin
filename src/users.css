@@ -1,0 +1,73 @@
+.selectedUser {
+  margin: 50px 30px 0px 20px;
+  width: 700px;
+}
+
+.selectedUser .dbDiary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 100px 68px;
+  gap: 10px;
+  position: relative;
+  width: 684px;
+  height: auto;
+  background: #FFFFFF;
+  box-shadow: 0px 18px 28px rgba(7, 45, 87, 0.15), 0px 0px 1px rgba(7, 45, 87, 0.31);
+  border-radius: 30px;
+}
+
+.selectedUser .dbDiary .dateBg {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 10px;
+  width: 158px;
+  height: 44px;
+  background: #072D57;
+  border-radius: 0px 0px 12px 12px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.selectedUser .dbDiary .dateBg .date {
+  width: 158px;
+  height: 20px;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 1.5px;
+  color: #FFFFFF;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.selectedUser .dbDiary .title {
+  width: auto;
+  height: auto;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  margin: 30px 0px 10px 0px;
+  line-height: 54px;
+  color: #072D57;
+  flex: none;
+  word-break: keep-all;
+  order: 0;
+  flex-grow: 0;
+}
+
+.selectedUser .dbDiary .line {
+  width: 484px;
+  height: 0px;
+  border: 1px solid #DDE2E8;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
