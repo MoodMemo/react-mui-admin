@@ -9,6 +9,7 @@ export const UserList = () => {
   const [info, setInfo] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [refresh, setRefresh] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     fetch("http://3.38.118.228:8080/api/userStampCount")
@@ -22,8 +23,7 @@ export const UserList = () => {
 
   useEffect(() => {
     if (refresh && selectedUser) {
-      const value = selectedUser.kakaoId;
-      fetch(`http://3.38.118.228:8080/api/dailyReport/${value}`)
+      fetch(`http://3.38.118.228:8080/api/dailyReport/${userId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
     }
@@ -33,10 +33,10 @@ export const UserList = () => {
 
   const CustomRow = () => {
     const record = useRecordContext();
+    setUserId(record.kakaoId); // handleClick 안에 있으면 handleClick 이벤트가 끝나고 나서 실행되기 때문에 뺐다.
 
     const handleClick = () => {
-      const value = record.kakaoId;
-      fetch(`http://3.38.118.228:8080/api/dailyReport/${value}`)
+      fetch(`http://3.38.118.228:8080/api/dailyReport/final/${userId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
     };
