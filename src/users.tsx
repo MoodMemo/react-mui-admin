@@ -34,9 +34,10 @@ export const UserList = () => {
 
   const CustomRow = () => {
     const record = useRecordContext();
-    setUserId(record.kakaoId); // handleClick 안에 있으면 handleClick 이벤트가 끝나고 나서 실행되기 때문에 뺐다.
+    // setUserId(record.kakaoId); // handleClick 안에 있으면 handleClick 이벤트가 끝나고 나서 실행되기 때문에 뺐다.
 
     const handleClick = () => {
+      setUserId(record.kakaoId);
       fetch(`http://3.38.118.228:8080/api/dailyReport/final/${userId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
