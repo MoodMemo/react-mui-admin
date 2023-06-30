@@ -12,6 +12,8 @@ export const UserList = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [refresh, setRefresh] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [save, setSave] = useState(false);
+  const [savedUser, setSavedUser] = useState(null);
 
   useEffect(() => {
     fetch("http://3.38.118.228:8080/api/userStampCount")
@@ -29,6 +31,7 @@ export const UserList = () => {
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
     }
+    setRefresh(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
@@ -59,6 +62,7 @@ export const UserList = () => {
   }, []);
 
   const handleSave = () => {
+    setSave(true);
     // 데이터를 POST 요청의 본문에 포함시킬 객체 생성
     const data = {
       // 필요한 데이터 속성들을 추가
@@ -73,6 +77,7 @@ export const UserList = () => {
       time: selectedUser.time
       // ... 추가 데이터 속성들
     };
+    setSavedUser(data);
   
     fetch("http://3.38.118.228:8080/api/dailyReport", {
       method: "POST",
@@ -120,16 +125,30 @@ export const UserList = () => {
 
       {selectedUser && (
         <>
-        {/* Diary 컴포넌트화를 했음 */}
-        <Diary selectedUser={selectedUser} />
-        <button onClick={handleRefresh} style={{
-              margin: '20px'
-            }}>Refresh</button>
-            <button onClick={handleSave} style={{
-              margin: '20px'
-            }}>Save</button>
+          <h3>kakaoId : {selectedUser.kakaoId}</h3>
+          <h2>username : {selectedUser.username}</h2>
+          {/* Diary 컴포넌트화 */}
+          <div className="diaries">
+            <div className="diary">
+              <p>AI 일기</p>
+              <Diary selectedUser={selectedUser} />
+              <button onClick={handleRefresh} style={{
+                margin: '20px'
+              }}>Refresh</button>
+              <button onClick={handleSave} style={{
+                margin: '20px'
+              }}>Save</button>
+            </div>
+            {save && (
+              <div className="diary">
+                <p>저장된 일기</p>
+                <Diary selectedUser={savedUser} />
+              </div>
+            )}
+          </div>
         </>
       )}
+
     </div>
   );
 };

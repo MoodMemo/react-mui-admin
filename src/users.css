@@ -1,9 +1,13 @@
-.selectedUser {
-  margin: 50px 30px 0px 20px;
+.diaries {
+  display: flex;
+  gap: 30px;
+}
+.diary {
+  margin: 0px 30px 0px 20px;
   width: 700px;
 }
 
-.selectedUser .dbDiary {
+.diary .dbDiary {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,13 +15,13 @@
   gap: 10px;
   position: relative;
   width: 684px;
-  height: auto;
+  height: fit-content;
   background: #FFFFFF;
   box-shadow: 0px 18px 28px rgba(7, 45, 87, 0.15), 0px 0px 1px rgba(7, 45, 87, 0.31);
   border-radius: 30px;
 }
 
-.selectedUser .dbDiary .dateBg {
+.diary .dbDiary .dateBg {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -32,7 +36,7 @@
   flex-grow: 0;
 }
 
-.selectedUser .dbDiary .dateBg .date {
+.diary .dbDiary .dateBg .date {
   width: 158px;
   height: 20px;
   font-family: Ubuntu;
@@ -47,7 +51,7 @@
   flex-grow: 0;
 }
 
-.selectedUser .dbDiary .title {
+.diary .dbDiary .title {
   width: auto;
   height: auto;
   font-family: Ubuntu;
@@ -63,7 +67,7 @@
   flex-grow: 0;
 }
 
-.selectedUser > .dbDiary > .line {
+.diary > .dbDiary > .line {
   width: 484px;
   height: 0px;
   border: 1px solid #DDE2E8;
@@ -72,7 +76,7 @@
   flex-grow: 0;
 }
 
-.selectedUser > .dbDiary > .body {
+.diary > .dbDiary > .body {
   width: 484px;
   height: auto;
   font-family: Ubuntu;
@@ -82,11 +86,12 @@
   line-height: 30px;
   color: #5E5E5E;
   flex: none;
+  word-break: keep-all;
   order: 0;
   flex-grow: 0;
 }
 
-.selectedUser > .dbDiary > .keywords {
+.diary > .dbDiary > .keywords {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -103,7 +108,7 @@
   flex-grow: 0;
 }
 
-.selectedUser > .dbDiary > .keywords > .keyword1st {
+.diary > .dbDiary > .keywords > .keyword1st {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -131,7 +136,7 @@
   color: #072D57;
 }
 
-.selectedUser > .dbDiary > .keywords > .keyword2nd {
+.diary > .dbDiary > .keywords > .keyword2nd {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -159,7 +164,7 @@
   color: #072D57;
 }
 
-.selectedUser > .dbDiary > .keywords > .keyword2nd {
+.diary > .dbDiary > .keywords > .keyword2nd {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -187,7 +192,7 @@
   color: #072D57;
 }
 
-.selectedUser > .dbDiary > .keywords > .keyword3rd {
+.diary > .dbDiary > .keywords > .keyword3rd {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;

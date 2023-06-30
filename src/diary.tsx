@@ -2,10 +2,6 @@
 // selectedUSer 받아와서 return !
 const Diary = ({selectedUser}) => {
   return(
-  <div className="selectedUser">
-    <h3>kakaoId : {selectedUser.kakaoId}</h3>
-    <h2>username : {selectedUser.username}</h2>
-    <br></br>
     <div className="dbDiary">
       <div className="dateBg">
         <p className="date">{selectedUser.date}</p>
@@ -25,7 +21,7 @@ const Diary = ({selectedUser}) => {
 
       {/* <p>{selectedUser.time}</p> */}
     </div>
-  </div>)
+  )
 }
 
 export default Diary;
