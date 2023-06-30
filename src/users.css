@@ -63,11 +63,154 @@
   flex-grow: 0;
 }
 
-.selectedUser .dbDiary .line {
+.selectedUser > .dbDiary > .line {
   width: 484px;
   height: 0px;
   border: 1px solid #DDE2E8;
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+
+.selectedUser > .dbDiary > .body {
+  width: 484px;
+  height: auto;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #5E5E5E;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.selectedUser > .dbDiary > .keywords {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 30px;
+  gap: 24px;
+  width: auto;
+  height: 72px;
+  border: 2px dashed #072D57;
+  border-radius: 5px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.selectedUser > .dbDiary > .keywords > .keyword1st {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 15px;
+  gap: 4px;
+
+  width: auto;
+  height: 32px;
+
+  background-color: #DDE2E8;
+  border: 1px solid #BABABA;
+  border-radius: 2px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 16px;
+
+  color: #072D57;
+}
+
+.selectedUser > .dbDiary > .keywords > .keyword2nd {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 15px;
+  gap: 4px;
+
+  width: auto;
+  height: 32px;
+
+  background-color: #DDE2E8;
+  border: 1px solid #BABABA;
+  border-radius: 2px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 16px;
+
+  color: #072D57;
+}
+
+.selectedUser > .dbDiary > .keywords > .keyword2nd {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 15px;
+  gap: 4px;
+
+  width: auto;
+  height: 32px;
+
+  background-color: #DDE2E8;
+  border: 1px solid #BABABA;
+  border-radius: 2px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 16px;
+
+  color: #072D57;
+}
+
+.selectedUser > .dbDiary > .keywords > .keyword3rd {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 15px;
+  gap: 4px;
+
+  width: auto;
+  height: 32px;
+
+  background-color: #DDE2E8;
+  border: 1px solid #BABABA;
+  border-radius: 2px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 16px;
+
+  color: #072D57;
 }
