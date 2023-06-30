@@ -1,7 +1,7 @@
 // in src/users.tsx
 import { useMediaQuery } from "@mui/material";
 import { List, SimpleList, Datagrid, TextField, useRecordContext } from "react-admin";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import './users.css';
 import Diary from "./diary";
 
@@ -46,16 +46,17 @@ export const UserList = () => {
 
     return (
       <div onClick={handleClick}>
-        <span><TextField source="username" record={record} /></span>
-        <span> </span>
-        <span><TextField source="stampCount" record={record} /></span>
+        <TextField source="username" record={record} />
+        {" "}
+        <TextField source="stampCount" record={record} />
       </div>
     );
   };
 
-  const handleRefresh = () => {
+  //useCallback을 함으로써 메모리 할당 최적화를 했음 야호!
+  const handleRefresh = useCallback(() => {
     setRefresh(true);
-  };
+  }, []);
 
   const handleSave = () => {
     // 데이터를 POST 요청의 본문에 포함시킬 객체 생성
