@@ -130,117 +130,12 @@ export const UserList = () => {
             
             <hr className="line"></hr>
 
-            <p style={{
-              width: '484px',
-              height: 'auto',
-              fontFamily: 'Ubuntu',
-              fontStyle: 'normal',
-              fontWeight: 400,
-              fontSize: '20px',
-              lineHeight: '30px',
-              color: '#5E5E5E',
-              flex: 'none',
-              order: 0,
-              flexGrow: 0
-            }}>{selectedUser.bodyText}</p>
+            <p className="body">{selectedUser.bodyText}</p>
 
-            <div style={{
-              boxSizing: 'border-box',
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '0px 30px',
-              gap: '24px',
-              width: 'auto',
-              height: '72px',
-              border: '2px dashed #072D57',
-              borderRadius: '5px',
-              flex: 'none',
-              order: 0,
-              flexGrow: 0
-            }}>
-              <p style={{
-                boxSizing: 'border-box',
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                padding: '8px 15px',
-                gap: '4px',
-
-                width: 'auto',
-                height: '32px',
-
-                backgroundColor: '#DDE2E8',
-                border: '1px solid #BABABA',
-                borderRadius: '2px',
-
-                flex: 'none',
-                order: 0,
-                flexGrow: 0,
-
-                fontFamily: 'Ubuntu',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                fontSize: '20px',
-                lineHeight: '16px',
-
-                color: '#072D57'
-              }}>{selectedUser.keyword1st}</p>
-              <p style={{
-                boxSizing: 'border-box',
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                padding: '8px 15px',
-                gap: '4px',
-
-                width: 'auto',
-                height: '32px',
-
-                backgroundColor: '#DDE2E8',
-                border: '1px solid #BABABA',
-                borderRadius: '2px',
-
-                flex: 'none',
-                order: 0,
-                flexGrow: 0,
-
-                fontFamily: 'Ubuntu',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                fontSize: '20px',
-                lineHeight: '16px',
-
-                color: '#072D57'
-              }}>{selectedUser.keyword2nd}</p>
-              <p style={{
-                boxSizing: 'border-box',
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                padding: '8px 15px',
-                gap: '4px',
-
-                width: 'auto',
-                height: '32px',
-
-                backgroundColor: '#DDE2E8',
-                border: '1px solid #BABABA',
-                borderRadius: '2px',
-
-                flex: 'none',
-                order: 0,
-                flexGrow: 0,
-
-                fontFamily: 'Ubuntu',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                fontSize: '20px',
-                lineHeight: '16px',
-
-                color: '#072D57'
-              }}>{selectedUser.keyword3rd}</p>
+            <div className="keywords">
+              <p className="keyword1st">{selectedUser.keyword1st}</p>
+              <p className="keyword2nd">{selectedUser.keyword2nd}</p>
+              <p className="keyword3rd">{selectedUser.keyword3rd}</p>
             </div>
 
             {/* <p>{selectedUser.time}</p> */}
