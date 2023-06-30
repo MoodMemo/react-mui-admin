@@ -1,8 +1,9 @@
 // in src/users.tsx
 import { useMediaQuery } from "@mui/material";
 import { List, SimpleList, Datagrid, TextField, useRecordContext } from "react-admin";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import './users.css';
+import Diary from "./diary";
 
 export const UserList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -11,6 +12,8 @@ export const UserList = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [refresh, setRefresh] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [save, setSave] = useState(false);
+  const [savedUser, setSavedUser] = useState(null);
 
   useEffect(() => {
     fetch("http://3.38.118.228:8080/api/userStampCount")
@@ -28,6 +31,7 @@ export const UserList = () => {
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
     }
+    setRefresh(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
@@ -45,18 +49,20 @@ export const UserList = () => {
 
     return (
       <div onClick={handleClick}>
-        <span><TextField source="username" record={record} /></span>
-        <span> </span>
-        <span><TextField source="stampCount" record={record} /></span>
+        <TextField source="username" record={record} />
+        {" "}
+        <TextField source="stampCount" record={record} />
       </div>
     );
   };
 
-  const handleRefresh = () => {
+  //useCallback을 함으로써 메모리 할당 최적화를 했음 야호!
+  const handleRefresh = useCallback(() => {
     setRefresh(true);
-  };
+  }, []);
 
   const handleSave = () => {
+    setSave(true);
     // 데이터를 POST 요청의 본문에 포함시킬 객체 생성
     const data = {
       // 필요한 데이터 속성들을 추가
@@ -71,6 +77,7 @@ export const UserList = () => {
       time: selectedUser.time
       // ... 추가 데이터 속성들
     };
+    setSavedUser(data);
   
     fetch("http://3.38.118.228:8080/api/dailyReport", {
       method: "POST",
@@ -117,37 +124,31 @@ export const UserList = () => {
       )}
 
       {selectedUser && (
-        <div className="selectedUser">
+        <>
           <h3>kakaoId : {selectedUser.kakaoId}</h3>
           <h2>username : {selectedUser.username}</h2>
-          <br></br>
-          <div className="dbDiary">
-            <div className="dateBg">
-              <p className="date">{selectedUser.date}</p>
+          {/* Diary 컴포넌트화 */}
+          <div className="diaries">
+            <div className="diary">
+              <p>AI 일기</p>
+              <Diary selectedUser={selectedUser} />
+              <button onClick={handleRefresh} style={{
+                margin: '20px'
+              }}>Refresh</button>
+              <button onClick={handleSave} style={{
+                margin: '20px'
+              }}>Save</button>
             </div>
-
-            <p className="title">{selectedUser.title}</p>
-            
-            <hr className="line"></hr>
-
-            <p className="body">{selectedUser.bodyText}</p>
-
-            <div className="keywords">
-              <p className="keyword1st">{selectedUser.keyword1st}</p>
-              <p className="keyword2nd">{selectedUser.keyword2nd}</p>
-              <p className="keyword3rd">{selectedUser.keyword3rd}</p>
-            </div>
-
-            {/* <p>{selectedUser.time}</p> */}
+            {save && (
+              <div className="diary">
+                <p>저장된 일기</p>
+                <Diary selectedUser={savedUser} />
+              </div>
+            )}
           </div>
-            <button onClick={handleRefresh} style={{
-              margin: '20px'
-            }}>Refresh</button>
-            <button onClick={handleSave} style={{
-              margin: '20px'
-            }}>Save</button>
-        </div>
+        </>
       )}
+
     </div>
   );
 };
