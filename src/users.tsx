@@ -14,6 +14,7 @@ export const UserList = () => {
   const [kakaoId, setKakaoId] = useState(null);
   const [save, setSave] = useState(false);
   const [savedUser, setSavedUser] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(''); // Initialize with an empty string
 
   useEffect(() => {
     fetch("http://3.38.118.228:8080/api/userStampCount")
@@ -33,7 +34,11 @@ export const UserList = () => {
     }
     setRefresh(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refresh])
+  }, [refresh]);
+
+  useEffect(() => {
+    console.log(`selectedDate: ${selectedDate}`);
+  }, [selectedDate]);
 
 
   const CustomRow = () => {
@@ -42,6 +47,15 @@ export const UserList = () => {
 
     const handleClick = () => {
       setKakaoId(record.kakaoId);
+
+      const currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() - 1);
+      console.log(`currentDate: ${currentDate}`);
+
+      const formattedDate = currentDate.toISOString().split('T')[0];
+      console.log(`formattedDate: ${formattedDate}`);
+
+      setSelectedDate(formattedDate);
       fetch(`http://3.38.118.228:8080/api/dailyReport/final/${kakaoId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
