@@ -11,9 +11,11 @@ export const UserList = () => {
   const [info, setInfo] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [refresh, setRefresh] = useState(false);
+  const [kakaoId, setKakaoId] = useState(null);
   const [userId, setUserId] = useState(null);
   const [save, setSave] = useState(false);
   const [savedUser, setSavedUser] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(''); // Initialize with an empty string
 
   useEffect(() => {
     fetch("http://3.38.118.228:8080/api/userStampCount")
@@ -27,13 +29,17 @@ export const UserList = () => {
 
   useEffect(() => {
     if (refresh && selectedUser) {
-      fetch(`http://3.38.118.228:8080/api/dailyReport/${userId}`)
+      fetch(`http://3.38.118.228:8080/api/dailyReport/${kakaoId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
     }
     setRefresh(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refresh])
+  }, [refresh]);
+
+  useEffect(() => {
+    console.log(`selectedDate: ${selectedDate}`);
+  }, [selectedDate]);
 
 
   const CustomRow = () => {
@@ -41,8 +47,18 @@ export const UserList = () => {
     // setUserId(record.kakaoId); // handleClick 안에 있으면 handleClick 이벤트가 끝나고 나서 실행되기 때문에 뺐다.
 
     const handleClick = () => {
-      setUserId(record.kakaoId);
-      fetch(`http://3.38.118.228:8080/api/dailyReport/final/${userId}`)
+      setKakaoId(record.kakaoId);
+      setUserId(record.id);
+
+      const currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() - 1);
+      console.log(`currentDate: ${currentDate}`);
+
+      const formattedDate = currentDate.toISOString().split('T')[0];
+      console.log(`formattedDate: ${formattedDate}`);
+
+      setSelectedDate(formattedDate);
+      fetch(`http://3.38.118.228:8080/api/dailyReport/final/${kakaoId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
     };
@@ -97,6 +113,45 @@ export const UserList = () => {
         console.error("Error:", error);
       });
   };
+  
+  const handleNewPage = () => {
+    if (savedUser && selectedDate) {
+      console.log(`${userId}`);
+      const url = `http://3.34.55.218/api/dailyReport/user/${userId}/${selectedDate}`;
+      const newWindow = window.open(url, '_blank');
+      if (newWindow) {
+        newWindow.document.body.innerHTML = `
+          <div id="diary-container"></div>
+          <script>
+            function renderDiary() {
+              const selectedUser = ${JSON.stringify(savedUser)};
+              const diaryContainer = document.getElementById('diary-container');
+              diaryContainer.innerHTML = '';
+              const diaryComponent = document.createElement('div');
+              diaryComponent.innerHTML = \`
+                <div class="dbDiary">
+                  <div class="dateBg">
+                    <p class="date">\${selectedUser.date}</p>
+                  </div>
+                  <p class="title">\${selectedUser.title}</p>
+                  <hr class="line"></hr>
+                  <p class="body">\${selectedUser.bodyText}</p>
+                  <div class="keywords">
+                    <p class="keyword1st">\${selectedUser.keyword1st}</p>
+                    <p class="keyword2nd">\${selectedUser.keyword2nd}</p>
+                    <p class="keyword3rd">\${selectedUser.keyword3rd}</p>
+                  </div>
+                </div>
+              \`;
+              diaryContainer.appendChild(diaryComponent);
+            }
+            renderDiary();
+          </script>
+        `;
+      }
+    }
+  };
+  
 
   return (
     <div>
@@ -138,6 +193,10 @@ export const UserList = () => {
               <button onClick={handleSave} style={{
                 margin: '20px'
               }}>Save</button>
+              <button onClick={handleNewPage} style={{ margin: '20px' }}>
+                new page
+              </button>
+
             </div>
             {save && (
               <div className="diary">
