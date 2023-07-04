@@ -10,7 +10,7 @@ const UserPage = () => {
 
   console.log(kakaoId);
   useEffect(() => {
-    fetch(`http://3.38.118.228:8080/api/dailyReport/final/${kakaoId}`)
+    fetch(`http://3.38.118.228:8080/api/dailyReport/user/${kakaoId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
   }, []);
