@@ -4,6 +4,7 @@ import { List, SimpleList, Datagrid, TextField, useRecordContext } from "react-a
 import { useCallback, useEffect, useState } from "react";
 import './users.css';
 import Diary from "./diary";
+import { Link } from "react-router-dom";
 
 export const UserList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -56,7 +57,7 @@ export const UserList = () => {
       console.log(`formattedDate: ${formattedDate}`);
 
       setSelectedDate(formattedDate);
-      fetch(`http://3.38.118.228:8080/api/dailyReport/final/${kakaoId}`)
+      fetch(`http://3.38.118.228:8080/api/dailyReport/final/${record.kakaoId}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
     };
@@ -152,6 +153,7 @@ export const UserList = () => {
               <button onClick={handleSave} style={{
                 margin: '20px'
               }}>Save</button>
+              <button><Link key={kakaoId} to={`/dailyReport/${kakaoId}`} target="_blank">유저 링크 띄우기</Link></button>
             </div>
             {save && (
               <div className="diary">
