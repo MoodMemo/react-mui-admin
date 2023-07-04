@@ -1,4 +1,4 @@
-
+// diary.tsx
 // selectedUSer 받아와서 return !
 const Diary = ({selectedUser}) => {
   return(
