@@ -12,7 +12,6 @@ export const UserList = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [refresh, setRefresh] = useState(false);
   const [kakaoId, setKakaoId] = useState(null);
-  const [userId, setUserId] = useState(null);
   const [save, setSave] = useState(false);
   const [savedUser, setSavedUser] = useState(null);
   const [selectedDate, setSelectedDate] = useState(''); // Initialize with an empty string
@@ -48,7 +47,6 @@ export const UserList = () => {
 
     const handleClick = () => {
       setKakaoId(record.kakaoId);
-      setUserId(record.id);
 
       const currentDate = new Date();
       currentDate.setDate(currentDate.getDate() - 1);
@@ -113,45 +111,6 @@ export const UserList = () => {
         console.error("Error:", error);
       });
   };
-  
-  const handleNewPage = () => {
-    if (savedUser && selectedDate) {
-      console.log(`${userId}`);
-      const url = `http://3.34.55.218/api/dailyReport/user/${userId}/${selectedDate}`;
-      const newWindow = window.open(url, '_blank');
-      if (newWindow) {
-        newWindow.document.body.innerHTML = `
-          <div id="diary-container"></div>
-          <script>
-            function renderDiary() {
-              const selectedUser = ${JSON.stringify(savedUser)};
-              const diaryContainer = document.getElementById('diary-container');
-              diaryContainer.innerHTML = '';
-              const diaryComponent = document.createElement('div');
-              diaryComponent.innerHTML = \`
-                <div class="dbDiary">
-                  <div class="dateBg">
-                    <p class="date">\${selectedUser.date}</p>
-                  </div>
-                  <p class="title">\${selectedUser.title}</p>
-                  <hr class="line"></hr>
-                  <p class="body">\${selectedUser.bodyText}</p>
-                  <div class="keywords">
-                    <p class="keyword1st">\${selectedUser.keyword1st}</p>
-                    <p class="keyword2nd">\${selectedUser.keyword2nd}</p>
-                    <p class="keyword3rd">\${selectedUser.keyword3rd}</p>
-                  </div>
-                </div>
-              \`;
-              diaryContainer.appendChild(diaryComponent);
-            }
-            renderDiary();
-          </script>
-        `;
-      }
-    }
-  };
-  
 
   return (
     <div>
@@ -193,10 +152,6 @@ export const UserList = () => {
               <button onClick={handleSave} style={{
                 margin: '20px'
               }}>Save</button>
-              <button onClick={handleNewPage} style={{ margin: '20px' }}>
-                new page
-              </button>
-
             </div>
             {save && (
               <div className="diary">
