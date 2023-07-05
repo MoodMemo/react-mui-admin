@@ -220,6 +220,38 @@
   color: #072D57;
 }
 
+.btnSave {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 15px;
+  gap: 4px;
+
+  width: auto;
+  height: 32px;
+
+  background-color: #DDE2E8;
+  border: 1px solid #BABABA;
+  border-radius: 2px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+
+  color: #072D57;
+}
+
+.btnSave:hover {
+  background-color: #b0b0b0;
+}
+
 /* 모바일 환경에서의 스타일 조정 */
 @media (max-width: 768px) {
 
