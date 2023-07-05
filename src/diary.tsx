@@ -1,6 +1,7 @@
 // diary.tsx
 
 import { useState } from "react";
+import html2canvas from "html2canvas";
 
 // selectedUSer 받아와서 return !
 const Diary = ({ selectedUser }) => {
@@ -57,7 +58,27 @@ const Diary = ({ selectedUser }) => {
     setIsEditMode(false);
   };
 
+  const captureAndSave = () => {
+    const dbDiaryElement = document.querySelector(".dbDiary");
+  
+    // html2canvas을 사용하여 dbDiary 요소를 캡처합니다.
+    html2canvas(dbDiaryElement).then((canvas) => {
+      // 캔버스를 이미지 URL로 변환합니다.
+      const dataURL = canvas.toDataURL();
+  
+      // a 태그를 생성하여 다운로드 링크로 사용합니다.
+      const downloadLink = document.createElement("a");
+      downloadLink.href = dataURL;
+      downloadLink.download = "diary_screenshot.png";
+  
+      // 다운로드 링크를 클릭하여 이미지를 저장합니다.
+      downloadLink.click();
+    });
+  };
+  
+
   return (
+    <>
     <div className="dbDiary">
       <div className="dateBg">
         <p className="date">{user.date}</p>
@@ -97,11 +118,13 @@ const Diary = ({ selectedUser }) => {
       )}
 
       {!isEditMode &&
+        <>
         <div className="keywords">
           <p className="keyword1st">{user.keyword1st}</p>
           <p className="keyword2nd">{user.keyword2nd}</p>
           <p className="keyword3rd">{user.keyword3rd}</p>
         </div>
+        </>
       }
 
       {isEditMode &&
@@ -109,8 +132,14 @@ const Diary = ({ selectedUser }) => {
           alignSelf: "center"
         }}>
           저장하기
-        </button>}
+        </button>
+      }
+      
     </div>
+    <button className="btnSave" onClick={captureAndSave} style={{ margin: "20px", alignSelf: "center" }}>
+      캡쳐 후 저장하기
+    </button>
+    </>
   );
 };
 
