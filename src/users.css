@@ -219,3 +219,107 @@
 
   color: #072D57;
 }
+
+.btnSave {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 15px;
+  gap: 4px;
+
+  width: auto;
+  height: 32px;
+
+  background-color: #DDE2E8;
+  border: 1px solid #BABABA;
+  border-radius: 2px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+
+  color: #072D57;
+}
+
+.btnSave:hover {
+  background-color: #b0b0b0;
+}
+
+/* 모바일 환경에서의 스타일 조정 */
+@media (max-width: 768px) {
+
+  .diaries {
+    background-color: white;
+  }
+  .diary {
+    width: 90%;
+    margin: 40px 20px 0px 20px;
+  }
+
+  .diary .dbDiary {
+    width: 100%;
+    padding: 0px 20px 40px;
+  }
+
+  .diary .dbDiary .dateBg {
+    width: 70%;
+    align-self: center;
+  }
+
+  .diary .dbDiary .dateBg .date {
+    width: 100%;
+    text-align: center;
+  }
+
+  .diary .dbDiary .title {
+    width: 95%;
+    font-size: 23px;
+    line-height: 40px;
+    align-self: center;
+    margin: 15px 0px 0px 0px;
+    padding: 0px 20px;
+    text-align: center;
+  }
+
+  .diary > .dbDiary > .line {
+    width: 85%;
+  }
+
+  .diary > .dbDiary > .body {
+    width: 95%;
+    padding: 0px 10px;
+    font-size: 15px;
+    line-height: 25px;
+    align-self: center;
+  }
+
+  .diary > .dbDiary > .keywords {
+    width: 90%;
+    border: 1.2px dashed #072D57;
+    gap: 24px;
+    padding: 1px;
+    align-self: center;
+  }
+
+  .diary > .dbDiary > .keywords > .keyword1st {
+    font-size: 13px;
+    /* 모바일 화면에서 keyword1st의 스타일을 조정할 수 있습니다. */
+  }
+
+  .diary > .dbDiary > .keywords > .keyword2nd {
+    font-size: 13px;
+    /* 모바일 화면에서 keyword2nd의 스타일을 조정할 수 있습니다. */
+  }
+
+  .diary > .dbDiary > .keywords > .keyword3rd {
+    font-size: 13px;
+    /* 모바일 화면에서 keyword3rd의 스타일을 조정할 수 있습니다. */
+  }
+}

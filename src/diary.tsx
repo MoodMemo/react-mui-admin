@@ -6,18 +6,30 @@ import { useState } from "react";
 const Diary = ({ selectedUser }) => {
   const [user, setUser] = useState(selectedUser);
   const [editableText, setEditableText] = useState(selectedUser.bodyText);
+  const [editableTitle, setEditableTitle] = useState(selectedUser.title);
+  const [isTextEditMode, setIsTextEditMode] = useState(false);
+  const [isTitleEditMode, setIsTitleEditMode] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   
   const handleTextChange = (event) => {
     setEditableText(event.target.value);
   };
+  const handleTitleChange = (event) => {
+    setEditableTitle(event.target.value);
+  };
 
-  const handleClick = () => {
+  const handleTextClick = () => {
+    setIsTextEditMode(true);
     setIsEditMode(true);
   };
 
+  const handleTitleClick = () => {
+    setIsTitleEditMode(true);
+    setIsEditMode(true);
+  }
+
   const handleSave = () => {
-    const updatedUser = { ...user, bodyText: editableText };
+    const updatedUser = { ...user, title: editableTitle, bodyText: editableText };
     setUser(updatedUser);
     
     fetch('http://3.38.118.228:8080/api/dailyReport/user', {
@@ -40,6 +52,8 @@ const Diary = ({ selectedUser }) => {
 
     
     // 저장이 완료되면 수정 모드를 해제합니다.
+    setIsTextEditMode(false);
+    setIsTitleEditMode(false);
     setIsEditMode(false);
   };
 
@@ -48,30 +62,54 @@ const Diary = ({ selectedUser }) => {
       <div className="dateBg">
         <p className="date">{user.date}</p>
       </div>
-
-      <p className="title">{user.title}</p>
+      {isTitleEditMode ? (
+        <textarea
+        className="title"
+        value={editableTitle}
+        onChange={handleTitleChange}
+        style={{
+          borderColor: "rgb(7, 45, 87, 0.2)"
+        }}
+        ></textarea>
+      ) : (
+        <p className="title" onClick={handleTitleClick}>
+          {user.title}
+        </p>
+      )}
+      {/* <p className="title">{user.title}</p> */}
 
       <hr className="line"></hr>
 
-      {isEditMode ? (
+      {isTextEditMode ? (
         <textarea
           className="body"
           value={editableText}
           onChange={handleTextChange}
+          style={{
+            height: "500px",
+            borderColor: "rgb(7, 45, 87, 0.2)"
+          }}
         ></textarea>
       ) : (
-        <p className="body" onClick={handleClick}>
+        <p className="body" onClick={handleTextClick}>
           {user.bodyText}
         </p>
       )}
 
-      <div className="keywords">
-        <p className="keyword1st">{user.keyword1st}</p>
-        <p className="keyword2nd">{user.keyword2nd}</p>
-        <p className="keyword3rd">{user.keyword3rd}</p>
-      </div>
+      {!isEditMode &&
+        <div className="keywords">
+          <p className="keyword1st">{user.keyword1st}</p>
+          <p className="keyword2nd">{user.keyword2nd}</p>
+          <p className="keyword3rd">{user.keyword3rd}</p>
+        </div>
+      }
 
-      {isEditMode && <button onClick={handleSave}>Save</button>}
+      {isEditMode &&
+        <button className="btnSave" onClick={handleSave} style={{
+          alignSelf: "center"
+        }}>
+          저장하기
+        </button>}
     </div>
   );
 };
