@@ -252,6 +252,21 @@
   background-color: #b0b0b0;
 }
 
+.imageContainer {
+  width: auto;
+  padding: 0px 20px 20px;
+  display: flex;
+  align-self: center;
+  overflow-x: auto;
+  gap: 10px;
+}
+
+.imageContainer img {
+  width: 30%;
+  height: 30%;
+  align-self: center;
+}
+
 /* 모바일 환경에서의 스타일 조정 */
 @media (max-width: 768px) {
 

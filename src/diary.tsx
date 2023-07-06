@@ -1,6 +1,6 @@
 // diary.tsx
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 
 // selectedUSer 받아와서 return !
@@ -11,7 +11,19 @@ const Diary = ({ selectedUser }) => {
   const [isTextEditMode, setIsTextEditMode] = useState(false);
   const [isTitleEditMode, setIsTitleEditMode] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [imageData, setImageData] = useState([]);
   
+  useEffect(() => {
+    fetch(`http://3.38.118.228:8080/api/imageLet/${selectedUser.kakaoId}`)
+      .then(response => response.json())
+      .then(data => {
+        setImageData(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, []);
+
   const handleTextChange = (event) => {
     setEditableText(event.target.value);
   };
@@ -116,6 +128,13 @@ const Diary = ({ selectedUser }) => {
           {user.bodyText}
         </p>
       )}
+      {imageData &&
+        <div className="imageContainer">
+          {imageData.map((item, index) => (
+            <img key={index} src={item.imageUrl} alt={`Image ${index}`} />
+          ))}
+        </div>
+      }
 
       {!isEditMode &&
         <>
