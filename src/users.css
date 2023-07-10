@@ -318,23 +318,23 @@
   .diary > .dbDiary > .keywords {
     width: 90%;
     border: 1.2px dashed #072D57;
-    gap: 24px;
+    gap: inherit;
     padding: 1px;
     align-self: center;
   }
 
   .diary > .dbDiary > .keywords > .keyword1st {
-    font-size: 13px;
+    font-size: 70%;
     /* 모바일 화면에서 keyword1st의 스타일을 조정할 수 있습니다. */
   }
 
   .diary > .dbDiary > .keywords > .keyword2nd {
-    font-size: 13px;
+    font-size: 70%;
     /* 모바일 화면에서 keyword2nd의 스타일을 조정할 수 있습니다. */
   }
 
   .diary > .dbDiary > .keywords > .keyword3rd {
-    font-size: 13px;
+    font-size: 70%;
     /* 모바일 화면에서 keyword3rd의 스타일을 조정할 수 있습니다. */
   }
 }
