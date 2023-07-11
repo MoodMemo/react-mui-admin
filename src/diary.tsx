@@ -147,6 +147,7 @@ const Diary = ({ selectedUser }) => {
           {user.title}
         </p>
       )}
+      
       {/* <p className="title">{user.title}</p> */}
 
       <hr className="line"></hr>
@@ -176,11 +177,11 @@ const Diary = ({ selectedUser }) => {
 
       {!isEditMode &&
         <>
-        <div className="keywords">
-          <p className="keyword1st">{user.keyword1st}</p>
-          <p className="keyword2nd">{user.keyword2nd}</p>
-          <p className="keyword3rd">{user.keyword3rd}</p>
-        </div>
+          <div className="keywords">
+            <p className="keyword1st">{user.keyword1st}</p>
+            <p className="keyword2nd">{user.keyword2nd}</p>
+            <p className="keyword3rd">{user.keyword3rd}</p>
+          </div>
         </>
       }
 
@@ -193,7 +194,7 @@ const Diary = ({ selectedUser }) => {
       }
       
     </div>
-    <button className="btnSave" onClick={captureAndSave} style={{ margin: "20px", alignSelf: "center"}}>
+    <button className="btnSave" onClick={captureAndSave} style={{ marginTop: "20px", marginLeft: "auto", marginRight: "auto", alignSelf: "center"}}>
       캡쳐 후 저장하기
     </button>
     </>
