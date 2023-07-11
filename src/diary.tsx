@@ -87,6 +87,29 @@ const Diary = ({ selectedUser }) => {
       downloadLink.click();
     });
   };
+
+  const like = () => {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split('T')[0];
+
+    fetch('http://3.38.118.228:8080/api/dailyReport/like', {
+      method: 'PUT', // 수정된 내용을 저장하기 위해 PUT 요청을 사용합니다. API 요청 방식에 따라 다를 수 있습니다.
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({kakaoId: user.kakaoId, date: formattedDate}), // 수정된 내용을 JSON 형식으로 변환하여 요청의 본문에 포함합니다.
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // 저장 후의 로직을 구현합니다.
+        console.log('저장되었습니다.');
+        // 필요한 추가적인 작업을 수행합니다.
+      })
+      .catch((error) => {
+        // 에러 처리
+        console.error('Error:', error);
+      });
+  };
   
 
   return (
@@ -155,8 +178,11 @@ const Diary = ({ selectedUser }) => {
       }
       
     </div>
-    <button className="btnSave" onClick={captureAndSave} style={{ margin: "20px", alignSelf: "center" }}>
+    <button className="btnSave" onClick={captureAndSave} style={{ margin: "20px", alignSelf: "center"}}>
       캡쳐 후 저장하기
+    </button>
+    <button className="btnLike" onClick={like}>
+      좋아요
     </button>
     </>
   );
