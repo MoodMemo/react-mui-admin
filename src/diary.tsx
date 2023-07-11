@@ -90,8 +90,10 @@ const Diary = ({ selectedUser }) => {
 
   const like = () => {
     const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() - 1);
     const formattedDate = currentDate.toISOString().split('T')[0];
 
+    console.log(user.kakaoId, formattedDate);
     fetch('http://3.38.118.228:8080/api/dailyReport/like', {
       method: 'PUT', // 수정된 내용을 저장하기 위해 PUT 요청을 사용합니다. API 요청 방식에 따라 다를 수 있습니다.
       headers: {
@@ -102,6 +104,7 @@ const Diary = ({ selectedUser }) => {
       .then((response) => response.json())
       .then((data) => {
         // 저장 후의 로직을 구현합니다.
+        console.log(data);
         console.log('저장되었습니다.');
         // 필요한 추가적인 작업을 수행합니다.
       })
@@ -117,6 +120,18 @@ const Diary = ({ selectedUser }) => {
     <div className="dbDiary">
       <div className="dateBg">
         <p className="date">{user.date}</p>
+      </div>
+      <div className="heartContainer">
+        <svg onClick={like} className="svgHeart" xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75" fill="none">
+          <g clipPath="url(#clip0_15_16)">
+            <path d="M51.5625 9.375C46.125 9.375 40.9062 11.9063 37.5 15.9063C34.0938 11.9063 28.875 9.375 23.4375 9.375C13.8125 9.375 6.25 16.9375 6.25 26.5625C6.25 38.375 16.875 48 32.9688 62.625L37.5 66.7188L42.0312 62.5938C58.125 48 68.75 38.375 68.75 26.5625C68.75 16.9375 61.1875 9.375 51.5625 9.375ZM37.8125 57.9687L37.5 58.2812L37.1875 57.9687C22.3125 44.5 12.5 35.5938 12.5 26.5625C12.5 20.3125 17.1875 15.625 23.4375 15.625C28.25 15.625 32.9375 18.7188 34.5938 23H40.4375C42.0625 18.7188 46.75 15.625 51.5625 15.625C57.8125 15.625 62.5 20.3125 62.5 26.5625C62.5 35.5938 52.6875 44.5 37.8125 57.9687Z" fill="#AFAFAF"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_15_16">
+              <rect width="75" height="75" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
       </div>
       {isTitleEditMode ? (
         <textarea
@@ -180,9 +195,6 @@ const Diary = ({ selectedUser }) => {
     </div>
     <button className="btnSave" onClick={captureAndSave} style={{ margin: "20px", alignSelf: "center"}}>
       캡쳐 후 저장하기
-    </button>
-    <button className="btnLike" onClick={like}>
-      좋아요
     </button>
     </>
   );
