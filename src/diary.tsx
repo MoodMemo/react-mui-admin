@@ -8,8 +8,10 @@ const Diary = ({ selectedUser }) => {
   const [user, setUser] = useState(selectedUser);
   const [editableText, setEditableText] = useState(selectedUser.bodyText);
   const [editableTitle, setEditableTitle] = useState(selectedUser.title);
+  const [editableDate, setEditableDate] = useState(selectedUser.date);
   const [isTextEditMode, setIsTextEditMode] = useState(false);
   const [isTitleEditMode, setIsTitleEditMode] = useState(false);
+  const [isDateEditMode, setIsDateEditMode] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [imageData, setImageData] = useState([]);
   
@@ -30,6 +32,9 @@ const Diary = ({ selectedUser }) => {
   const handleTitleChange = (event) => {
     setEditableTitle(event.target.value);
   };
+  const handleDateChange = (event) => {
+    setEditableDate(event.target.value);
+  };
 
   const handleTextClick = () => {
     setIsTextEditMode(true);
@@ -41,8 +46,14 @@ const Diary = ({ selectedUser }) => {
     setIsEditMode(true);
   }
 
+  const handleDateClick = () => {
+    console.log("달력 아이콘 누름");
+    setIsDateEditMode(true);
+    setIsEditMode(true); // Enable edit mode when the date is clicked
+  }
+
   const handleSave = () => {
-    const updatedUser = { ...user, title: editableTitle, bodyText: editableText };
+    const updatedUser = { ...user, title: editableTitle, bodyText: editableText, date: editableDate, };
     setUser(updatedUser);
     
     fetch('http://3.38.118.228:8080/api/dailyReport/user', {
@@ -67,6 +78,7 @@ const Diary = ({ selectedUser }) => {
     // 저장이 완료되면 수정 모드를 해제합니다.
     setIsTextEditMode(false);
     setIsTitleEditMode(false);
+    setIsDateEditMode(false);
     setIsEditMode(false);
   };
 
@@ -124,7 +136,18 @@ const Diary = ({ selectedUser }) => {
           <path fillRule="evenodd" clipRule="evenodd" d="M8.995 9H23.005C24.107 9 25 9.895 25 10.994V23.006C25 23.2679 24.9484 23.5273 24.8481 23.7693C24.7478 24.0113 24.6009 24.2312 24.4156 24.4163C24.2304 24.6015 24.0104 24.7484 23.7684 24.8485C23.5263 24.9487 23.2669 25.0001 23.005 25H8.995C8.46607 25 7.95878 24.7899 7.58468 24.416C7.21057 24.0421 7.00027 23.5349 7 23.006V10.994C7 9.893 7.892 9 8.995 9ZM9 13V22C9 22.2652 9.10536 22.5196 9.29289 22.7071C9.48043 22.8946 9.73478 23 10 23H22C22.2652 23 22.5196 22.8946 22.7071 22.7071C22.8946 22.5196 23 22.2652 23 22V13H9ZM10 8C10 7.73478 10.1054 7.48043 10.2929 7.29289C10.4804 7.10536 10.7348 7 11 7C11.2652 7 11.5196 7.10536 11.7071 7.29289C11.8946 7.48043 12 7.73478 12 8V9H10V8ZM20 8C20 7.73478 20.1054 7.48043 20.2929 7.29289C20.4804 7.10536 20.7348 7 21 7C21.2652 7 21.5196 7.10536 21.7071 7.29289C21.8946 7.48043 22 7.73478 22 8V9H20V8ZM11 17V14.999H13V17H11ZM19 17V14.999H21V17H19ZM15 17V14.999H17.001V17H15ZM11 21V19H13V21H11ZM15 21V19H17.001V21H15ZM19 21V19H21V21H19Z" fill="#ffffff"/>
           </svg>
         </div>
-        <p className="date">{user.date}</p>
+        {isDateEditMode ? (
+          <input
+            className="date"
+            value={editableDate}
+            onChange={handleDateChange}
+            style={{
+              borderColor: "rgb(7, 45, 87, 0.2)",
+            }}
+          />
+        ) : (
+          <p className="date">{user.date}</p>
+        )}
       </div>
       <div className="heartContainer">
         <svg onClick={like} className="svgHeart" xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75" fill="none">

@@ -153,7 +153,6 @@
 .svgDate {
   margin: 0px -35px 3px 0px;
   width: 32px;
-  flex-shrink: 0;
   align-self: center;
 }
 
@@ -235,7 +234,7 @@
   }
 
   .diary .dbDiary .dateBg .date {
-    width: 100%;
+    width: 80%;
     text-align: center;
   }
 
