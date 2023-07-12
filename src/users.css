@@ -144,10 +144,15 @@
   background-color: #b0b0b0;
 }
 
-.dateContainer {
+/* .dateContainer {
   margin-right: auto;
   display: flex;
   align-items: center;
+} */
+
+.svgArrow {
+  width: 24px;
+  height: 24px;
 }
 
 .svgDate {
@@ -231,10 +236,11 @@
   .diary .dbDiary .dateBg {
     width: 70%;
     align-self: center;
+    gap: 5px;
   }
 
   .diary .dbDiary .dateBg .date {
-    width: 80%;
+    width: 70%;
     text-align: center;
   }
 
