@@ -153,7 +153,7 @@ export const UserList = () => {
               <button onClick={handleSave} style={{
                 margin: '20px'
               }}>Save</button>
-              <button><Link key={kakaoId} to={`/dailyReport/${kakaoId}`} target="_blank">유저 링크 띄우기</Link></button>
+              <button><Link key={kakaoId} to={`/dailyReport/${kakaoId}/${selectedDate}`} target="_blank">유저 링크 띄우기</Link></button>
             </div>
             {save && (
               <div className="diary">

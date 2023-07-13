@@ -7,10 +7,11 @@ import Diary from "./diary";
 const UserPage = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const kakaoId = useParams().kakaoId;
+  const date = useParams().date;
 
   console.log(kakaoId);
   useEffect(() => {
-    fetch(`http://3.38.118.228:8080/api/dailyReport/user/${kakaoId}`)
+    fetch(`http://3.38.118.228:8080/api/dailyReport/user/${kakaoId}/${date}`)
         .then((response) => response.json())
         .then((data) => setSelectedUser(data));
   }, []);
