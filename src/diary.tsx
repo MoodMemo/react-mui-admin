@@ -115,6 +115,8 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
   };
 
   const like = () => {
+    const heart = document.getElementById('svgHeart');
+    heart?.classList.add("svgHeart");
     const currentDate = new Date();
     currentDate.setDate(currentDate.getDate() - 1);
     const formattedDate = currentDate.toISOString().split('T')[0];
@@ -169,7 +171,7 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
         </svg>
       </div>
       <div className="heartContainer">
-        <svg onClick={like} className="svgHeart" xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75" fill="none">
+        <svg onClick={like} id="svgHeart" className="svgInitialHeart" xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75" fill="none">
           <g clipPath="url(#clip0_15_16)">
             <path d="M51.5625 9.375C46.125 9.375 40.9062 11.9063 37.5 15.9063C34.0938 11.9063 28.875 9.375 23.4375 9.375C13.8125 9.375 6.25 16.9375 6.25 26.5625C6.25 38.375 16.875 48 32.9688 62.625L37.5 66.7188L42.0312 62.5938C58.125 48 68.75 38.375 68.75 26.5625C68.75 16.9375 61.1875 9.375 51.5625 9.375ZM37.8125 57.9687L37.5 58.2812L37.1875 57.9687C22.3125 44.5 12.5 35.5938 12.5 26.5625C12.5 20.3125 17.1875 15.625 23.4375 15.625C28.25 15.625 32.9375 18.7188 34.5938 23H40.4375C42.0625 18.7188 46.75 15.625 51.5625 15.625C57.8125 15.625 62.5 20.3125 62.5 26.5625C62.5 35.5938 52.6875 44.5 37.8125 57.9687Z" fill="#AFAFAF"/>
           </g>

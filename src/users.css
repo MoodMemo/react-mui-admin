@@ -167,7 +167,7 @@
   align-items: center;
 }
 
-.svgHeart {
+.svgInitialHeart {
   width: auto;
   height: auto;
   background: #ffffff00;
@@ -189,20 +189,20 @@
   align-self: center;
 } */
 
-.svgHeart:hover {
+/* .svgHeart:hover {
   background: #FFD2EA;
-}
+} */
 
-.svgHeart:hover g {
+.svgHeart g {
   clip-path: url(#clip0_1_23);
 }
 
-.svgHeart:hover g > path {
+.svgHeart g > path {
   fill : #EC007F;
   d: path("M37.5 66.7188L32.9688 62.5938C16.875 48 6.25 38.375 6.25 26.5625C6.25 16.9375 13.8125 9.375 23.4375 9.375C28.875 9.375 34.0938 11.9063 37.5 15.9063C40.9062 11.9063 46.125 9.375 51.5625 9.375C61.1875 9.375 68.75 16.9375 68.75 26.5625C68.75 38.375 58.125 48 42.0312 62.625L37.5 66.7188Z");
 }
 
-.svgHeart:hover defs > clipPath {
+.svgHeart defs > clipPath {
   id: path("clip0_1_23");
 }
 
