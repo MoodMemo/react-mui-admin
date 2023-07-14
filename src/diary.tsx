@@ -19,6 +19,13 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setUser(selectedUser); // selectedUser가 변경될 때마다 user를 업데이트합니다.
+    setEditableText(selectedUser.bodyText);
+    setEditableTitle(selectedUser.title);
+    setEditableDate(selectedUser.date);
+  }, [selectedUser]);
+  
+  useEffect(() => {
     setCurrentDate(new Date(selectedDate)); // selectedDate가 변경될 때마다 currentDate를 업데이트합니다.
   }, [selectedDate]);
   
