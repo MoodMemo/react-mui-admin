@@ -146,7 +146,7 @@ export const UserList = () => {
           <div className="diaries">
             <div className="diary">
               <p>AI 일기</p>
-              <Diary selectedUser={selectedUser} selectedDate={selectedDate} />
+              <Diary kakaoId={kakaoId} selectedUser={selectedUser} selectedDate={selectedDate} />
               <button onClick={handleRefresh} style={{
                 margin: '20px'
               }}>Refresh</button>
@@ -158,7 +158,7 @@ export const UserList = () => {
             {save && (
               <div className="diary">
                 <p>저장된 일기</p>
-                <Diary selectedUser={savedUser} selectedDate={selectedDate}/>
+                <Diary kakaoId={kakaoId} selectedUser={savedUser} selectedDate={selectedDate}/>
               </div>
             )}
           </div>

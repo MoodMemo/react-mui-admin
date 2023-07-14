@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import html2canvas from "html2canvas";
 
 // selectedUSer 받아와서 return !
-const Diary = ({ selectedUser, selectedDate }) => {
+const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
   const [user, setUser] = useState(selectedUser);
   const [editableText, setEditableText] = useState(selectedUser.bodyText);
   const [editableTitle, setEditableTitle] = useState(selectedUser.title);
@@ -31,7 +31,7 @@ const Diary = ({ selectedUser, selectedDate }) => {
       .catch(error => {
         console.error('Error:', error);
       });
-  }, []);
+  }, [selectedUser, selectedDate]);
 
   const handleTextChange = (event) => {
     setEditableText(event.target.value);
@@ -137,14 +137,14 @@ const Diary = ({ selectedUser, selectedDate }) => {
     const prevDate = new Date(currentDate);
     prevDate.setDate(prevDate.getDate() - 1);
     setCurrentDate(prevDate);
-    navigate(`/dailyReport/${selectedUser.kakaoId}/${prevDate.toISOString().split("T")[0]}`);
+    navigate(`/dailyReport/${kakaoId}/${prevDate.toISOString().split("T")[0]}`);
   };
   
   const handleNextDate = () => {
     const nextDate = new Date(currentDate);
     nextDate.setDate(nextDate.getDate() + 1);
     setCurrentDate(nextDate);
-    navigate(`/dailyReport/${selectedUser.kakaoId}/${nextDate.toISOString().split("T")[0]}`);
+    navigate(`/dailyReport/${kakaoId}/${nextDate.toISOString().split("T")[0]}`);
   };
   
   

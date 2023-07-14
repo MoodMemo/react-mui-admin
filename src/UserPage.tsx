@@ -13,10 +13,10 @@ const UserPage = () => {
     fetch(`http://3.38.118.228:8080/api/dailyReport/user/${kakaoId}/${date}`)
       .then((response) => response.json())
       .then((data) => setSelectedUser(data));
-  }, [kakaoId, date]);
+  }, [date]);
 
   if (!selectedUser) return <div>No data available</div>;
-  return <div key={`${kakaoId}-${date}`} className="diaries"><div className="diary"><Diary selectedUser={selectedUser} selectedDate={date} /></div></div>;
+  return <div key={`${kakaoId}-${date}`} className="diaries"><div className="diary"><Diary kakaoId={kakaoId} selectedUser={selectedUser} selectedDate={date} /></div></div>;
 };
 
 export default UserPage;
