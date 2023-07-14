@@ -28,7 +28,7 @@
   align-items: center;
   padding: 0px 20px;
   gap: 10px;
-  width: 158px;
+  width: auto;
   height: 44px;
   background: #072D57;
   border-radius: 0px 0px 12px 12px;
@@ -36,7 +36,7 @@
 }
 
 .diary .dbDiary .dateBg .date {
-  width: 158px;
+  width: auto;
   height: 20px;
   font-family: Ubuntu;
   font-style: normal;
