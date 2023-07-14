@@ -146,19 +146,19 @@ export const UserList = () => {
           <div className="diaries">
             <div className="diary">
               <p>AI 일기</p>
-              <Diary selectedUser={selectedUser} />
+              <Diary selectedUser={selectedUser} selectedDate={selectedDate} />
               <button onClick={handleRefresh} style={{
                 margin: '20px'
               }}>Refresh</button>
               <button onClick={handleSave} style={{
                 margin: '20px'
               }}>Save</button>
-              <button><Link key={kakaoId} to={`/dailyReport/${kakaoId}/${selectedDate}`} target="_blank">유저 링크 띄우기</Link></button>
+              <button><Link key={`${kakaoId}-${selectedDate}`} to={`/dailyReport/${kakaoId}/${selectedDate}`} target="_blank">유저 링크 띄우기</Link></button>
             </div>
             {save && (
               <div className="diary">
                 <p>저장된 일기</p>
-                <Diary selectedUser={savedUser} />
+                <Diary selectedUser={savedUser} selectedDate={selectedDate}/>
               </div>
             )}
           </div>
