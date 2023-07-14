@@ -2,6 +2,7 @@
   display: flex;
   gap: 30px;
 }
+
 .diary {
   margin: 0px 30px 0px 20px;
   width: 700px;
@@ -27,17 +28,15 @@
   align-items: center;
   padding: 0px 20px;
   gap: 10px;
-  width: 158px;
+  width: auto;
   height: 44px;
   background: #072D57;
   border-radius: 0px 0px 12px 12px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .diary .dbDiary .dateBg .date {
-  width: 158px;
+  width: auto;
   height: 20px;
   font-family: Ubuntu;
   font-style: normal;
@@ -46,9 +45,7 @@
   line-height: 20px;
   letter-spacing: 1.5px;
   color: #FFFFFF;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .diary .dbDiary .title {
@@ -61,19 +58,13 @@
   margin: 30px 0px 10px 0px;
   line-height: 54px;
   color: #072D57;
-  flex: none;
   word-break: keep-all;
-  order: 0;
-  flex-grow: 0;
 }
 
 .diary > .dbDiary > .line {
   width: 484px;
   height: 0px;
   border: 1px solid #DDE2E8;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
 .diary > .dbDiary > .body {
@@ -85,14 +76,10 @@
   font-size: 20px;
   line-height: 30px;
   color: #5E5E5E;
-  flex: none;
   word-break: keep-all;
-  order: 0;
-  flex-grow: 0;
 }
 
-.diary > .dbDiary > .keywords {
-  box-sizing: border-box;
+.diary .dbDiary .keywords {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -103,153 +90,120 @@
   height: 72px;
   border: 2px dashed #072D57;
   border-radius: 5px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
-.diary > .dbDiary > .keywords > .keyword1st {
-  box-sizing: border-box;
+.diary .dbDiary .keywords .keyword1st,
+.diary .dbDiary .keywords .keyword2nd,
+.diary .dbDiary .keywords .keyword3rd {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 8px 15px;
   gap: 4px;
-
   width: auto;
   height: 32px;
-
   background-color: #DDE2E8;
   border: 1px solid #BABABA;
   border-radius: 2px;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
   font-family: Ubuntu;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 16px;
-
   color: #072D57;
 }
 
-.diary > .dbDiary > .keywords > .keyword2nd {
-  box-sizing: border-box;
+.diary-buttons {
   display: flex;
-  flex-direction: row;
+  gap: 20px;
+  justify-items: center;
   align-items: center;
-  padding: 8px 15px;
-  gap: 4px;
-
-  width: auto;
-  height: 32px;
-
-  background-color: #DDE2E8;
-  border: 1px solid #BABABA;
-  border-radius: 2px;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
-  font-family: Ubuntu;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 16px;
-
-  color: #072D57;
-}
-
-.diary > .dbDiary > .keywords > .keyword2nd {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 8px 15px;
-  gap: 4px;
-
-  width: auto;
-  height: 32px;
-
-  background-color: #DDE2E8;
-  border: 1px solid #BABABA;
-  border-radius: 2px;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
-  font-family: Ubuntu;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 16px;
-
-  color: #072D57;
-}
-
-.diary > .dbDiary > .keywords > .keyword3rd {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 8px 15px;
-  gap: 4px;
-
-  width: auto;
-  height: 32px;
-
-  background-color: #DDE2E8;
-  border: 1px solid #BABABA;
-  border-radius: 2px;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
-  font-family: Ubuntu;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 16px;
-
-  color: #072D57;
 }
 
 .btnSave {
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 8px 15px;
   gap: 4px;
-
   width: auto;
   height: 32px;
-
   background-color: #DDE2E8;
   border: 1px solid #BABABA;
   border-radius: 2px;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
   font-family: Ubuntu;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
-
   color: #072D57;
+  align-self: center;
 }
 
 .btnSave:hover {
   background-color: #b0b0b0;
+}
+
+/* .dateContainer {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+} */
+
+.svgArrow {
+  width: 24px;
+  height: 24px;
+}
+
+.svgDate {
+  margin: 0px -35px 3px 0px;
+  width: 32px;
+  align-self: center;
+}
+
+.heartContainer {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.svgInitialHeart {
+  width: auto;
+  height: auto;
+  background: #ffffff00;
+  background-size: auto;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  margin: -50px 0px 0px 0px;
+}
+/* 
+.svgHeart {
+  scale: 50%;
+  width: auto;
+  height: auto;
+  background: #ffffff00;
+  background-size: auto;
+  border-radius: 20px;
+  padding: 10px;
+  align-self: center;
+} */
+
+/* .svgHeart:hover {
+  background: #FFD2EA;
+} */
+
+.svgHeart g {
+  clip-path: url(#clip0_1_23);
+}
+
+.svgHeart g > path {
+  fill : #EC007F;
+  d: path("M37.5 66.7188L32.9688 62.5938C16.875 48 6.25 38.375 6.25 26.5625C6.25 16.9375 13.8125 9.375 23.4375 9.375C28.875 9.375 34.0938 11.9063 37.5 15.9063C40.9062 11.9063 46.125 9.375 51.5625 9.375C61.1875 9.375 68.75 16.9375 68.75 26.5625C68.75 38.375 58.125 48 42.0312 62.625L37.5 66.7188Z");
+}
+
+.svgHeart defs > clipPath {
+  id: path("clip0_1_23");
 }
 
 .imageContainer {
@@ -269,10 +223,6 @@
 
 /* 모바일 환경에서의 스타일 조정 */
 @media (max-width: 768px) {
-
-  .diaries {
-    background-color: white;
-  }
   .diary {
     width: 90%;
     margin: 40px 20px 0px 20px;
@@ -286,10 +236,11 @@
   .diary .dbDiary .dateBg {
     width: 70%;
     align-self: center;
+    gap: 5px;
   }
 
   .diary .dbDiary .dateBg .date {
-    width: 100%;
+    width: 70%;
     text-align: center;
   }
 
@@ -298,16 +249,16 @@
     font-size: 23px;
     line-height: 40px;
     align-self: center;
-    margin: 15px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     padding: 0px 20px;
     text-align: center;
   }
 
-  .diary > .dbDiary > .line {
+  .diary .dbDiary .line {
     width: 85%;
   }
 
-  .diary > .dbDiary > .body {
+  .diary .dbDiary .body {
     width: 95%;
     padding: 0px 10px;
     font-size: 15px;
@@ -315,26 +266,27 @@
     align-self: center;
   }
 
-  .diary > .dbDiary > .keywords {
+  .diary .dbDiary .keywords {
     width: 90%;
     border: 1.2px dashed #072D57;
-    gap: 24px;
+    gap: inherit;
     padding: 1px;
     align-self: center;
   }
 
-  .diary > .dbDiary > .keywords > .keyword1st {
-    font-size: 13px;
+  .diary .dbDiary .keywords .keyword1st {
+    font-size: 70%;
     /* 모바일 화면에서 keyword1st의 스타일을 조정할 수 있습니다. */
   }
 
-  .diary > .dbDiary > .keywords > .keyword2nd {
-    font-size: 13px;
+  .diary .dbDiary .keywords .keyword2nd {
+    font-size: 70%;
     /* 모바일 화면에서 keyword2nd의 스타일을 조정할 수 있습니다. */
   }
 
-  .diary > .dbDiary > .keywords > .keyword3rd {
-    font-size: 13px;
+  .diary .dbDiary .keywords .keyword3rd {
+    font-size: 70%;
     /* 모바일 화면에서 keyword3rd의 스타일을 조정할 수 있습니다. */
   }
+
 }

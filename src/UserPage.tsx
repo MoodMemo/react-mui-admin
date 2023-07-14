@@ -7,16 +7,16 @@ import Diary from "./diary";
 const UserPage = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const kakaoId = useParams().kakaoId;
+  const date = useParams().date;
 
-  console.log(kakaoId);
   useEffect(() => {
-    fetch(`http://3.38.118.228:8080/api/dailyReport/user/${kakaoId}`)
-        .then((response) => response.json())
-        .then((data) => setSelectedUser(data));
-  }, []);
+    fetch(`http://3.38.118.228:8080/api/dailyReport/user/${kakaoId}/${date}`)
+      .then((response) => response.json())
+      .then((data) => setSelectedUser(data));
+  }, [date]);
 
-  if(!selectedUser) return <></>;
-  return <div className="diaries"><div className="diary"><Diary selectedUser={selectedUser}/></div></div>;
-}
+  if (!selectedUser) return <div>No data available</div>;
+  return <div key={`${kakaoId}-${date}`} className="diaries"><div className="diary"><Diary kakaoId={kakaoId} selectedUser={selectedUser} selectedDate={date} /></div></div>;
+};
 
 export default UserPage;

@@ -14,7 +14,7 @@ export const App = () => (
   <Admin authProvider={authProvider} dataProvider={dataProvider} dashboard={Dashboard}>
     <Resource name="users" list={UserList} icon={UserIcon} recordRepresentation="name"/> 
     <CustomRoutes noLayout>
-      <Route path="/dailyReport/:kakaoId" element={<UserPage />} />
+      <Route path="/dailyReport/:kakaoId/:date" element={<UserPage />} />
     </CustomRoutes>
   </Admin>
 )
