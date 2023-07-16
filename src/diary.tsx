@@ -16,6 +16,9 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [imageData, setImageData] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date(selectedDate));
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,6 +60,15 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
     setIsEditMode(true);
   }
 
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+    // 팝업창을 열거나 다른 방식으로 이미지를 크게 보여줄 수 있는 로직을 추가합니다.
+    setIsModalOpen(true);
+  };  
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleSave = () => {
     const updatedUser = { ...user, title: editableTitle, bodyText: editableText, date: editableDate, };
@@ -211,10 +223,32 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
       {imageData &&
         <div className="imageContainer">
           {imageData.map((item, index) => (
-            <img key={index} src={item.imageUrl} alt={`Image ${index}`} />
+            <img
+              key={index}
+              src={item.imageUrl}
+              alt={`Image ${index}`}
+              onClick={() => handleImageClick(index)}
+            />
           ))}
         </div>
       }
+      
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modalContent">
+            {/* 선택된 이미지를 크게 보여줍니다 */}
+            {selectedImageIndex !== null && (
+              <img
+                src={imageData[selectedImageIndex].imageUrl}
+                alt={`Image ${selectedImageIndex}`}
+              />
+            )}
+
+            {/* 모달 닫기 버튼 */}
+            <button onClick={handleCloseModal}>Close</button>
+          </div>
+        </div>
+      )}
 
       {!isEditMode &&
         <>
