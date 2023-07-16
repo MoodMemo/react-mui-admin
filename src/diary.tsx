@@ -46,9 +46,6 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
   const handleTitleChange = (event) => {
     setEditableTitle(event.target.value);
   };
-  const handleDateChange = (event) => {
-    setEditableDate(event.target.value);
-  };
 
   const handleTextClick = () => {
     setIsTextEditMode(true);
@@ -60,11 +57,6 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
     setIsEditMode(true);
   }
 
-  const handleDateClick = () => {
-    console.log("달력 아이콘 누름");
-    setIsDateEditMode(true);
-    setIsEditMode(true); // Enable edit mode when the date is clicked
-  }
 
   const handleSave = () => {
     const updatedUser = { ...user, title: editableTitle, bodyText: editableText, date: editableDate, };
