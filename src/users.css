@@ -289,4 +289,45 @@
     /* 모바일 화면에서 keyword3rd의 스타일을 조정할 수 있습니다. */
   }
 
+  /* 모달 스타일 */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  }
+  
+  .modalContent {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  text-align: center;
+  }
+  
+  .modalContent img {
+  width: 100%;
+  height: auto;
+  }
+  
+  .modalContent button {
+  margin-top: 20px;
+  background-color: #072D57;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  }
+
 }

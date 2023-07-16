@@ -23,7 +23,6 @@ export const UserList = () => {
       .then((data) => {
         setUserList(data.data);
         setInfo(data.info);
-        // console.log(data[0].kakaoId);
       });
   }, []);
 
@@ -126,12 +125,9 @@ export const UserList = () => {
               primaryText={(record) => record.username}
               secondaryText={(record) => record.kakaoId}
               data={userList}
-              // onClick={handleClick}
             />
           ) : (
             <Datagrid data={userList}>
-              {/* <TextField source="kakaoId" />
-              <TextField source="username" /> */}
               <CustomRow />
             </Datagrid>
           )}

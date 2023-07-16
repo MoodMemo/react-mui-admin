@@ -12,24 +12,20 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
   const [editableDate, setEditableDate] = useState(selectedUser.date);
   const [isTextEditMode, setIsTextEditMode] = useState(false);
   const [isTitleEditMode, setIsTitleEditMode] = useState(false);
-  const [isDateEditMode, setIsDateEditMode] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [imageData, setImageData] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date(selectedDate));
-  const navigate = useNavigate();
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const navigate = useNavigate();
+  
   useEffect(() => {
     setUser(selectedUser); // selectedUser가 변경될 때마다 user를 업데이트합니다.
     setEditableText(selectedUser.bodyText);
     setEditableTitle(selectedUser.title);
     setEditableDate(selectedUser.date);
-  }, [selectedUser]);
-  
-  useEffect(() => {
     setCurrentDate(new Date(selectedDate)); // selectedDate가 변경될 때마다 currentDate를 업데이트합니다.
-  }, [selectedDate]);
-  
-  useEffect(() => {
     fetch(`http://3.38.118.228:8080/api/imageLet/${selectedUser.kakaoId}/${selectedDate}`)
       .then(response => response.json())
       .then(data => {
@@ -46,9 +42,6 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
   const handleTitleChange = (event) => {
     setEditableTitle(event.target.value);
   };
-  const handleDateChange = (event) => {
-    setEditableDate(event.target.value);
-  };
 
   const handleTextClick = () => {
     setIsTextEditMode(true);
@@ -60,11 +53,15 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
     setIsEditMode(true);
   }
 
-  const handleDateClick = () => {
-    console.log("달력 아이콘 누름");
-    setIsDateEditMode(true);
-    setIsEditMode(true); // Enable edit mode when the date is clicked
-  }
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+    // 팝업창을 열거나 다른 방식으로 이미지를 크게 보여줄 수 있는 로직을 추가합니다.
+    setIsModalOpen(true);
+  };  
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleSave = () => {
     const updatedUser = { ...user, title: editableTitle, bodyText: editableText, date: editableDate, };
@@ -92,7 +89,6 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
     // 저장이 완료되면 수정 모드를 해제합니다.
     setIsTextEditMode(false);
     setIsTitleEditMode(false);
-    setIsDateEditMode(false);
     setIsEditMode(false);
   };
 
@@ -219,10 +215,32 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
       {imageData &&
         <div className="imageContainer">
           {imageData.map((item, index) => (
-            <img key={index} src={item.imageUrl} alt={`Image ${index}`} />
+            <img
+              key={index}
+              src={item.imageUrl}
+              alt={`Image ${index}`}
+              onClick={() => handleImageClick(index)}
+            />
           ))}
         </div>
       }
+      
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modalContent">
+            {/* 선택된 이미지를 크게 보여줍니다 */}
+            {selectedImageIndex !== null && (
+              <img
+                src={imageData[selectedImageIndex].imageUrl}
+                alt={`Image ${selectedImageIndex}`}
+              />
+            )}
+
+            {/* 모달 닫기 버튼 */}
+            <button onClick={handleCloseModal}>Close</button>
+          </div>
+        </div>
+      )}
 
       {!isEditMode &&
         <>
