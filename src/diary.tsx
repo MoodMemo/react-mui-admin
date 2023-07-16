@@ -12,7 +12,6 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
   const [editableDate, setEditableDate] = useState(selectedUser.date);
   const [isTextEditMode, setIsTextEditMode] = useState(false);
   const [isTitleEditMode, setIsTitleEditMode] = useState(false);
-  const [isDateEditMode, setIsDateEditMode] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [imageData, setImageData] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date(selectedDate));
@@ -20,19 +19,13 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     setUser(selectedUser); // selectedUser가 변경될 때마다 user를 업데이트합니다.
     setEditableText(selectedUser.bodyText);
     setEditableTitle(selectedUser.title);
     setEditableDate(selectedUser.date);
-  }, [selectedUser]);
-  
-  useEffect(() => {
     setCurrentDate(new Date(selectedDate)); // selectedDate가 변경될 때마다 currentDate를 업데이트합니다.
-  }, [selectedDate]);
-  
-  useEffect(() => {
     fetch(`http://3.38.118.228:8080/api/imageLet/${selectedUser.kakaoId}/${selectedDate}`)
       .then(response => response.json())
       .then(data => {
@@ -96,7 +89,6 @@ const Diary = ({ kakaoId, selectedUser, selectedDate }) => {
     // 저장이 완료되면 수정 모드를 해제합니다.
     setIsTextEditMode(false);
     setIsTitleEditMode(false);
-    setIsDateEditMode(false);
     setIsEditMode(false);
   };
 
